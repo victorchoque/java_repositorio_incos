@@ -1,0 +1,55 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 17 abr de 2024, 12:19:40
+    Author     : v3ct0r
+*/
+body,html{
+    margin:0px;
+    padding:0px;
+    
+}
+/* Estilos para el encabezado */
+header {
+    background-color: #333; /* Color de fondo del encabezado */
+    color: #fff; /* Color del texto del encabezado */
+    padding: 20px; /* Espacio interno del encabezado */
+}
+
+/* Estilos para la barra lateral izquierda */
+aside {
+    float: left; /* Coloca la barra lateral a la izquierda */
+    width: 200px; /* Ancho de la barra lateral */
+    background-color: #f4f4f4; /* Color de fondo de la barra lateral */
+    padding: 20px; /* Espacio interno de la barra lateral */
+}
+
+/* Estilos para el área de contenido principal */
+main {
+    margin-left: 220px; /* Margen izquierdo para dejar espacio para la barra lateral */
+    padding: 20px; /* Espacio interno del área principal */
+    background-color: #fff; /* Color de fondo del área principal */
+}
+
+/* Estilos para los enlaces dentro de la barra lateral */
+aside ul {
+    list-style: none; /* Elimina los estilos de lista */
+    padding: 0; /* Elimina el espacio interno de la lista */
+}
+
+aside ul li {
+    margin-bottom: 10px; /* Espacio entre cada elemento de la lista */
+}
+
+/* Estilos para los enlaces en el encabezado */
+header nav ul {
+    list-style: none; /* Elimina los estilos de lista */
+    padding: 0; /* Elimina el espacio interno de la lista */
+}
+
+header nav ul li {
+    display: inline-block; /* Muestra los elementos en línea */
+    margin-right: 20px; /* Espacio entre cada elemento */
+}

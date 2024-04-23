@@ -1,0 +1,5 @@
+*.bak
+build/
+dist/
+mariadb-connector-c-3.3.8-centos74-amd64.tar.gz
+repositorio_incos/nbproject/private
