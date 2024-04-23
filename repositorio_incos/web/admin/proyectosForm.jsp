@@ -89,7 +89,7 @@ request.setAttribute("subtitulo", " proyectos");
     }
 %>
 <h1><%=subtitulo%></h1>
-<form method="post" enctype = "multipart/form-data">
+<form method="post">
     <input type="hidden" name="auditoria_administrativos_id" value="<%=usuario.getId()%>">
     <table>
         <tr>

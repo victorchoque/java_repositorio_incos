@@ -308,7 +308,7 @@ return null;
             statement = conexion.prepareStatement(query.toString());
 
             // Establecer los valores de los parámetros
-            setearParametros(statement, 1, valores);
+            setearParametros(statement, 1, valores.values().toArray());
             /*int index = 1;
             for (Object valor : valores.values()) {
                 if (valor instanceof Integer) {
