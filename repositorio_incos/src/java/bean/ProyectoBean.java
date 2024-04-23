@@ -64,7 +64,8 @@ public class ProyectoBean extends BaseBean {
         formulario.put("descripcion"      , request.getParameter("descripcion") );
         formulario.put("resumen"          , request.getParameter("resumen") );
         //formulario.put("pdf"              , request.getParameter("pdf") );
-        formulario.put("pdf"              , pdf );
+        if(pdf != null)
+            formulario.put("pdf"              , pdf );
         //formulario.put("activo"           , Boolean.parseBoolean( request.getParameter("activo") ) );
         formulario.put("auditoria_administrativos_id", Integer.parseInt( request.getParameter("auditoria_administrativos_id") ) );                
         formulario.put("auditoria_descripcion"       , request.getParameter("auditoria_descripcion") );

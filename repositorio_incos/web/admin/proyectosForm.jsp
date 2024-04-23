@@ -32,17 +32,20 @@ request.setAttribute("subtitulo", " proyectos");
         proyecto = proyectosBean.obtenerProyectosPorId( Integer.valueOf( request.getParameter("id") ) );
         subtitulo = "Actualizar proyectos '"+ proyecto.getTitulo()+"'";
     }
+    /*
+    trabajar con multipar no es factible por ahora, haremos uso de BASE64 para transferir archivos y esto consumira los recursos en un 35% mas a cambio de la complejidad
     if(request.getParts()!= null){
         for(Part p : request.getParts()){
             String algo = p.getName();
         }
-    }
+    }/**/
 
     if(request.getParameter("registrar") != null && request.getParameter("auditoria_administrativos_id").equals(String.valueOf(usuario.getId())) ){
-        
-        Part archivoPart = request.getPart("pdf");
+            
+        //Part archivoPart = request.getPart("pdf");
         byte[] datosArchivo = null;
-        if (archivoPart != null) {
+        
+        /*if (archivoPart != null) {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             InputStream inputStream = archivoPart.getInputStream();
             byte[] buffer = new byte[1024];
@@ -53,13 +56,17 @@ request.setAttribute("subtitulo", " proyectos");
             }
 
             datosArchivo = byteArrayOutputStream.toByteArray(); // Archivo como byte[]
-        }
+        }/**/
         String mensaje = "";
         
         
         if(proyecto.getId()== 0 ){
+            datosArchivo = request.getParameter("pdf").getBytes();
             mensaje = proyectosBean.insertarProyectos(request,datosArchivo);
         }else{
+            if(request.getParameter("pdf") != null && request.getParameter("pdf").length() >0 ){
+                datosArchivo = request.getParameter("pdf").getBytes();
+            }
             mensaje = proyectosBean.actualizarProyectos(request,datosArchivo);
         }
         proyecto.setCarreras_sid(request.getParameter("carreras_sid"));
@@ -113,7 +120,7 @@ request.setAttribute("subtitulo", " proyectos");
                 <select name="tutores_id">
                     <option value="0">Seleccione Tutor</option>
                     <%for (Tutor item : tutorBean.listaTutores() ) {%>
-                    <option value="<%=item.getId()%>" <%=item.getId() == proyecto.getTutores_id() ? "selected" : ""%>><%=item.getNombres()%></option>
+                    <option value="<%=item.getId()%>" <%=item.getId() == proyecto.getTutores_id() ? "selected" : ""%>><%=item.getFullname()%></option>
                     <%}%>
                 </select>
             </td>
@@ -124,7 +131,7 @@ request.setAttribute("subtitulo", " proyectos");
                 <select name="estudiantes_id">
                     <option value="0">Seleccione Estudiante</option>
                     <%for (Estudiante item : estudianteBean.listaEstudiantes() ) {%>
-                    <option value="<%=item.getId()%>" <%=item.getId() == proyecto.getEstudiantes_id() ? "selected" : ""%>><%=item.getNombres()%></option>
+                    <option value="<%=item.getId()%>" <%=item.getId() == proyecto.getEstudiantes_id() ? "selected" : ""%>><%=item.getFullname()%></option>
                     <%}%>
                 </select>
             </td>
@@ -135,7 +142,17 @@ request.setAttribute("subtitulo", " proyectos");
         </tr>
         <tr>
             <td>Año de Defensa:</td>
-            <td><input type="number" name="anio_defensa" value="<%=proyecto.getAnio_defensa()%>" /></td>
+            <td><input type="number" name="anio_defensa" min="2010" max="2032" value="<%=proyecto.getAnio_defensa()%>" /></td>
+        </tr>
+        <tr>
+            <td>PDF de proyecto:</td>
+            <td>
+                <input type="hidden" name="pdf" />
+                <input type="file" id="pdf" />
+            </td>
+            <td rowspan="10">
+                <iframe src="about:blank" id="preview_pdf"></iframe>
+            </td>
         </tr>
         <tr>
             <td>Descripcion de proyecto:</td>
@@ -149,10 +166,7 @@ request.setAttribute("subtitulo", " proyectos");
                 <textarea name="resumen" rows="10"><%=proyecto.getResumen()%></textarea>
             </td>
         </tr>
-        <tr>
-            <td>PDF de proyecto:</td>
-            <td><input type="file" name="pdf" /></td>
-        </tr>            
+            
         <tr>
             <td>Descripcion de Auditoria:</td>
             <td><input type="text" name="auditoria_descripcion" required /></td>
@@ -164,4 +178,30 @@ request.setAttribute("subtitulo", " proyectos");
         </tr>
     </table>
 </form>
+<script>
+
+document.getElementById('pdf').addEventListener('change', function(event) {
+    const inputFile = event.target.files[0];
+    const hiddenField = document.querySelector('input[name="pdf"]');
+    const iframe = document.getElementById('preview_pdf');
+    iframe.setAttribute("style","height:"+iframe.parentElement.offsetHeight + 'px');
+    hiddenField.value = ''; //limpiamos el valor anterior
+    if (inputFile) {
+        const reader = new FileReader();
+
+        // Función que se llama cuando se termina de cargar el archivo
+        reader.onload = function(e) {
+            const base64Data = e.target.result;
+            // Asigna el contenido base64 al campo oculto
+            hiddenField.value = base64Data;
+
+            // Opcional: mostrar una vista previa en el iframe
+            iframe.src = base64Data;
+        };
+
+        // Leer el archivo como base64 (data URL)
+        reader.readAsDataURL(inputFile);
+    }
+});
+</script>
 <jsp:include page="/WEB-INF/jspf/footer.jsp" /> 
