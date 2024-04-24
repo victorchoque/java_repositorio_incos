@@ -1,5 +1,5 @@
 -- MySQL Workbench Synchronization
--- Generated: 2024-04-23 23:25
+-- Generated: 2024-04-24 00:41
 -- Model: New Model
 -- Version: 1.0
 -- Project: Name of the project
@@ -160,6 +160,16 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `repositorio_incos`.`reporte_auditorias` (`'proyectos_id'` INT, `'usuario'` INT, `'accion'` INT, `'fecha'` INT, `'proyecto_titulo'` INT, `'auditoria_descripcion'` INT);
 
+-- -----------------------------------------------------
+-- Placeholder table for view `repositorio_incos`.`reporte_proyecto_auditorias`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `repositorio_incos`.`reporte_proyecto_auditorias` (`id` INT, `proyectos_id` INT, `auditoria_administrativos_id` INT, `auditoria_fecha_hora` INT, `auditoria_accion` INT, `auditoria_descripcion` INT, `proyectos_titulo` INT, `administrativos_usuario` INT);
+
+-- -----------------------------------------------------
+-- Placeholder table for view `repositorio_incos`.`reporte_proyectos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `repositorio_incos`.`reporte_proyectos` (`id` INT, `carreras_sid` INT, `tipo_proyectos_id` INT, `tutores_id` INT, `estudiantes_id` INT, `titulo` INT, `anio_defensa` INT, `descripcion` INT, `resumen` INT, `carrera` INT, `tipo_proyecto` INT, `tutor` INT, `estudiante` INT);
+
 
 USE `repositorio_incos`;
 
@@ -182,6 +192,51 @@ FROM proyecto_auditorias AS pa
 INNER JOIN administrativos AS a ON a.id = pa.auditoria_administrativos_id
 INNER JOIN proyectos AS p ON p.id = pa.proyectos_id
 LIMIT 100;
+
+
+USE `repositorio_incos`;
+
+-- -----------------------------------------------------
+-- View `repositorio_incos`.`reporte_proyecto_auditorias`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `repositorio_incos`.`reporte_proyecto_auditorias`;
+USE `repositorio_incos`;
+CREATE  OR REPLACE VIEW `reporte_proyecto_auditorias` AS
+SELECT pa.*
+	, p.titulo AS proyectos_titulo
+    , a.`user` AS administrativos_usuario
+FROM proyecto_auditorias AS pa
+INNER JOIN administrativos AS a ON a.id = pa.auditoria_administrativos_id
+INNER JOIN proyectos AS p ON p.id = pa.proyectos_id;
+
+
+USE `repositorio_incos`;
+
+-- -----------------------------------------------------
+-- View `repositorio_incos`.`reporte_proyectos`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `repositorio_incos`.`reporte_proyectos`;
+USE `repositorio_incos`;
+CREATE  OR REPLACE VIEW `reporte_proyectos` AS
+-- Este reporte sera usado tambien para las Busquedas con proyectos activos y asi no se toma en cuenta el PDF para ser mas rapido
+SELECT
+	p.id , p.carreras_sid , p.tipo_proyectos_id , p.tutores_id, p.estudiantes_id
+	, p.titulo
+	, p.anio_defensa
+	, p.descripcion
+	, p.resumen
+	, c.nombre   AS carrera
+	, tp.tipo    AS tipo_proyecto
+	, CONCAT(t.apellido_paterno," ",t.apellido_materno," ",t.nombres)  AS tutor
+    , CONCAT(e.apellido_paterno," ",e.apellido_materno," ",e.nombres)  AS estudiante
+FROM proyectos AS p
+INNER JOIN carreras       AS c  ON  c.sid = p.carreras_sid
+INNER JOIN tipo_proyectos AS tp ON tp.id  = p.tipo_proyectos_id
+INNER JOIN tutores        AS t  ON  t.id  = p.tutores_id
+INNER JOIN estudiantes    AS e  ON  e.id  = p.estudiantes_id
+WHERE p.activo = true
+-- Columnas para usarlos y crear un Modelo,Pojo,Dto, etc
+-- id, carreras_sid, tipo_proyectos_id, tutores_id, estudiantes_id, titulo, anio_defensa, descripcion, resumen, carrera, tipo_proyecto, tutor, estudiante;
 
 DELIMITER $$
 

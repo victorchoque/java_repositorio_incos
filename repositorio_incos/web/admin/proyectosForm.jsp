@@ -2,6 +2,7 @@
     Document   : ProyectosLista
     Author     : v3ct0r
 --%>
+<%@page import="pojo.ReporteProyectoAuditorias"%>
 <%@page import="java.io.InputStream"%>
 <%@page import="java.io.ByteArrayOutputStream"%>
 <%@page import="pojo.Estudiante"%>
@@ -14,13 +15,15 @@
 <%
 request.setAttribute("subtitulo", " proyectos");
 %>
-<jsp:include page="/WEB-INF/jspf/header.jsp" /> 
+<jsp:include page="/WEB-INF/jspf/header.jsp" />
+<jsp:useBean id="usuarioLogeadoBean" scope="session"  class="bean.UsuarioLogeadoBean"/> 
 <jsp:useBean id="carreraBean" scope="session"  class="bean.CarreraBean"/>
 <jsp:useBean id="tipo_proyectoBean" scope="session"  class="bean.Tipo_proyectoBean"/>
 <jsp:useBean id="tutorBean" scope="session"  class="bean.TutorBean"/>
 <jsp:useBean id="estudianteBean" scope="session"  class="bean.EstudianteBean"/>
 <jsp:useBean id="proyectosBean" scope="session"  class="bean.ProyectoBean"/>
-<jsp:useBean id="usuarioLogeadoBean" scope="session"  class="bean.UsuarioLogeadoBean"/>
+<jsp:useBean id="reportesBean" scope="session"  class="bean.ReportesBean"/>
+
 <%
     UsuarioLogeado usuario = (UsuarioLogeado) session.getAttribute(UsuarioLogeado.class.getName());
     String subtitulo = "Insertar proyectos";
@@ -210,4 +213,32 @@ document.getElementById('pdf').addEventListener('change', function(event) {
     }
 });
 </script>
+<%
+ if(proyecto.getId()>0){    
+%>
+    <h3>Historial de cambios</h3>
+    <table class="table_auditoria" border="1">
+        <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>accion</th>
+            <th>Por</th>
+            <th>descripcion</th>
+
+        </tr>
+        </thead>
+        <tbody>
+    <% for(ReporteProyectoAuditorias item : reportesBean.reporteProyectoAuditorias(proyecto.getId()) ){ %>
+        <tr>
+            <td><%=item.getAuditoria_fecha_hora()%></td>            
+            <td><%=item.getAuditoria_accion()%></td>
+            <th><%=item.getAdministrativos_usuario()%></th>
+            <td><%=item.getAuditoria_descripcion()%></td>
+        </tr>
+    <% }%>
+        </tbody>
+    </table>
+<%
+ }
+%>
 <jsp:include page="/WEB-INF/jspf/footer.jsp" /> 
