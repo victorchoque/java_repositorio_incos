@@ -151,7 +151,13 @@ request.setAttribute("subtitulo", " proyectos");
                 <input type="file" id="pdf" />
             </td>
             <td rowspan="10">
-                <iframe src="about:blank" id="preview_pdf"></iframe>
+                <%
+                    String src="about:blank";
+                    if(proyecto.getPdf() != null){                    
+                        src = new String(proyecto.getPdf());
+                    }
+                %>
+                <iframe src="<%=src%>" id="preview_pdf"></iframe>
             </td>
         </tr>
         <tr>

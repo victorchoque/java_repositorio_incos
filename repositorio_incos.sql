@@ -1,5 +1,5 @@
 -- MySQL Workbench Synchronization
--- Generated: 2024-04-23 17:05
+-- Generated: 2024-04-23 23:25
 -- Model: New Model
 -- Version: 1.0
 -- Project: Name of the project
@@ -77,10 +77,10 @@ CREATE TABLE IF NOT EXISTS `repositorio_incos`.`proyectos` (
   `tutores_id` INT(10) UNSIGNED NOT NULL,
   `estudiantes_id` INT(10) UNSIGNED NOT NULL,
   `titulo` VARCHAR(127) NOT NULL,
-  `anio_defensa` TINYINT(3) UNSIGNED NOT NULL,
+  `anio_defensa` SMALLINT(4) UNSIGNED NOT NULL,
   `descripcion` VARCHAR(2047) NOT NULL,
   `resumen` TEXT NOT NULL,
-  `pdf` BLOB NOT NULL COMMENT  /* comment truncated */ /*Archivo PDF del Proyecto*/,
+  `pdf` LONGBLOB NOT NULL COMMENT  /* comment truncated */ /*Archivo PDF del Proyecto*/,
   `activo` ENUM("si", "no") NOT NULL DEFAULT 'si' COMMENT  /* comment truncated */ /*Para identificar si esta borrado logicamente o no*/,
   `auditoria_administrativos_id` INT(10) UNSIGNED NOT NULL,
   `auditoria_fecha_hora` DATETIME NOT NULL DEFAULT NOW(),
