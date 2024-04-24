@@ -376,7 +376,7 @@ return null;
                 }/* */
                 index++;
             }
-            setearParametros(statement,1,valores.values());
+            setearParametros(statement,1,valores.values().toArray());
             setearParametros(statement,index,columnas);
             // Establecer el valor del parámetro para la condición WHERE
             

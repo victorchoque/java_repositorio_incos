@@ -69,8 +69,7 @@ public class ProyectoBean extends BaseBean {
         //formulario.put("activo"           , Boolean.parseBoolean( request.getParameter("activo") ) );
         formulario.put("auditoria_administrativos_id", Integer.parseInt( request.getParameter("auditoria_administrativos_id") ) );                
         formulario.put("auditoria_descripcion"       , request.getParameter("auditoria_descripcion") );
-
-        formulario.put("tipo", request.getParameter("tipo") );
+        
         return super.actualizarDatos("proyectos", formulario, 
                 "id=?", request.getParameter("id"));
         
