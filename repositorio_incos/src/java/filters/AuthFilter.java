@@ -49,12 +49,18 @@ public class AuthFilter implements Filter {
                             throw new Exception("El Id del administrativo es menor a 1 ");
                         tieneLoginValido =true;                        
                         HttpSession session = httpRequest.getSession(false);  // No crear una nueva sesión si no existe
-                        //Si bien podria tener la Cookie, no podria tener la session por lo cual debe volverse a logear
-                        UsuarioLogeado usuario = (UsuarioLogeado) session.getAttribute(UsuarioLogeado.class.getName());
-                        if(usuario==null){
+                        // Si no existe Session pero si la Cookie, necesita volverse a logear
+                        if(session == null)
+                        {
                             tieneLoginValido = false;
-                            //return;
+                        }else{
+                            //Si bien podria tener la Cookie, no podria tener la session por lo cual debe volverse a logear
+                            UsuarioLogeado usuario = (UsuarioLogeado) session.getAttribute(UsuarioLogeado.class.getName());
+                            if(usuario==null){
+                                tieneLoginValido = false;                                
+                            }
                         }
+                        
                         chain.doFilter(request, response);
                         return;
                     }catch(Exception e){
