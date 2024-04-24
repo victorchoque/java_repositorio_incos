@@ -31,7 +31,10 @@ request.setAttribute("subtitulo", "Lista de personal Estudiantes del sistema");
         <td><%=item.getApellido_paterno()%></td>        
         <td><%=item.getApellido_materno()%></td>                
         <td><%=item.getNombres()%></td>
-        <td><a href='estudiantesForm.jsp?id=<%=item.getId()%>'>EDITAR</a></td>
+        <td>
+            <a href='estudiantesForm.jsp?id=<%=item.getId()%>'>EDITAR</a>
+            <a href='eliminar?tabla=estudiantes&id=<%=item.getId()%>' onclick="return confirm('Esta seguro de Borrar?')">BORRAR</a>
+        </td>
     </tr>
 <%}%>
     </tbody>

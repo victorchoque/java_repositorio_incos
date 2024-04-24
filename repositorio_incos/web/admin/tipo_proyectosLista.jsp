@@ -25,7 +25,10 @@ request.setAttribute("subtitulo", "Lista de personal tipo_proyectos del sistema"
     <tr>
         <td><%=item.getId()%></td>
         <td><%=item.getTipo()%></td>        
-        <td><a href='tipo_proyectosForm.jsp?id=<%=item.getId()%>'>EDITAR</a></td>
+        <td>
+            <a href='tipo_proyectosForm.jsp?id=<%=item.getId()%>'>EDITAR</a>
+            <a href='eliminar?tabla=tipo_proyectos&id=<%=item.getId()%>' onclick="return confirm('Esta seguro de Borrar?')">BORRAR</a>
+        </td>
     </tr>
 <%}%>
     </tbody>

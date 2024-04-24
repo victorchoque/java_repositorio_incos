@@ -25,7 +25,7 @@ request.setAttribute("subtitulo", "Lista de personal proyectos del sistema");
     <tbody>
 
 <%for (Proyecto item : proyectoBean.listaProyectos() ) {%>
-    <tr>
+    <tr style="<%=item.isActivo()?"":"border-color:red" %>">
         <td><%=item.getId()%></td>
         <td><%=item.getTitulo()%></td>        
         <td>
@@ -33,7 +33,9 @@ request.setAttribute("subtitulo", "Lista de personal proyectos del sistema");
             <a href="${contextPath}/publico/proyecto.jsp?id=<%=item.getId()%>" target="_blank"><%=item.getPdfTamanio()%> <img src='${contextPath}/assets/portada_page/pdf-icon.svg' style="max-width:16px;max-height:16px"></a>
         </td>
         <td><a href='proyectosForm.jsp?id=<%=item.getId()%>'>EDITAR</a> 
-        |   <a href='eliminar.jsp?table=proyectos&id=<%=item.getId()%>' onclick="return prompt('Esta seguro de eliminar ?')">Borrarr</a> 
+            <% if(item.isActivo()){%>
+        |   <a href='eliminar?tabla=proyectos&id=<%=item.getId()%>' onclick="return confirm('Esta seguro de Desactivar ?')">Desactivar</a> 
+            <% }%>
         </td>
     </tr>
 <%}%>

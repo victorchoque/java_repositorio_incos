@@ -28,7 +28,10 @@ request.setAttribute("subtitulo", "Lista de personal administrativo del sistema"
         <td><%=item.getId()%></td>
         <td><%=item.getUser()%></td>
         <td><%=item.getPass()%></td>
-        <td><a href='administrativosForm.jsp?id=<%=item.getId()%>'>EDITAR</a></td>
+        <td>
+            <a href='administrativosForm.jsp?id=<%=item.getId()%>'>EDITAR</a>
+            <a href='eliminar?tabla=administrativos&id=<%=item.getId()%>' onclick="return confirm('Esta seguro de Borrar?')">BORRAR</a>
+        </td>
     </tr>
 <%}%>
     </tbody>

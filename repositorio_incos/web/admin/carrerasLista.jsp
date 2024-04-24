@@ -25,7 +25,10 @@ request.setAttribute("subtitulo", "Lista de personal Carreras del sistema");
     <tr>
         <td><%=item.getSid()%></td>
         <td><%=item.getNombre()%></td>        
-        <td><a href='carrerasForm.jsp?sid=<%=item.getSid()%>'>EDITAR</a></td>
+        <td>
+            <a href='carrerasForm.jsp?sid=<%=item.getSid()%>'>EDITAR</a>
+            <a href='eliminar?tabla=carreras&sid=<%=item.getSid()%>' onclick="return confirm('Esta seguro de Borrar?')">BORRAR</a>
+        </td>
     </tr>
 <%}%>
     </tbody>

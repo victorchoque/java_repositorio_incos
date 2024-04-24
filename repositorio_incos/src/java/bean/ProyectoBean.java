@@ -37,12 +37,19 @@ public class ProyectoBean extends BaseBean {
                 , "SELECT * FROM proyectos WHERE id=?"
                 , id);
     }
+    public String eliminarProyectos(int id,int id_usuario){
+        Map<String, Object> formulario = new HashMap<>();                        
+        formulario.put("auditoria_administrativos_id", id_usuario );                
+        formulario.put("auditoria_descripcion", "Eliminacion logica" );
+        formulario.put("activo"       , "no" );
+
+        return super.actualizarDatos("proyectos", formulario,"id=?",id);
+    
+    }
     public String insertarProyectos(HttpServletRequest request,byte[] pdf){
         // carreras_sid, tipo_proyectos_id, tutores_id, estudiantes_id, titulo, anio_defensa , descripcion, resumen, pdf, activo, auditoria_administrativos_id, auditoria_fecha_hora, auditoria_accion, auditoria_descripcion
         Map<String, Object> formulario = new HashMap<>();
-        /*
-    private String tipo;
-        */
+
         formulario.put("carreras_sid"     , request.getParameter("carreras_sid") );
         formulario.put("tipo_proyectos_id", Integer.parseInt( request.getParameter("tipo_proyectos_id") ) );
         formulario.put("tutores_id"       , Integer.parseInt( request.getParameter("tutores_id") ) );
@@ -53,7 +60,7 @@ public class ProyectoBean extends BaseBean {
         formulario.put("resumen"          , request.getParameter("resumen") );
         //formulario.put("pdf"              , request.getParameter("pdf") );
         formulario.put("pdf"              , pdf );
-        //formulario.put("activo"           , Boolean.parseBoolean( request.getParameter("activo") ) );
+        //formulario.put("activo"           , "si" );
         formulario.put("auditoria_administrativos_id", Integer.parseInt( request.getParameter("auditoria_administrativos_id") ) );                
         formulario.put("auditoria_descripcion"       , request.getParameter("auditoria_descripcion") );
 
@@ -75,7 +82,7 @@ public class ProyectoBean extends BaseBean {
         //formulario.put("pdf"              , request.getParameter("pdf") );
         if(pdf != null)
             formulario.put("pdf"              , pdf );
-        //formulario.put("activo"           , Boolean.parseBoolean( request.getParameter("activo") ) );
+        //formulario.put("activo"           ,  "si" );
         formulario.put("auditoria_administrativos_id", Integer.parseInt( request.getParameter("auditoria_administrativos_id") ) );                
         formulario.put("auditoria_descripcion"       , request.getParameter("auditoria_descripcion") );
         

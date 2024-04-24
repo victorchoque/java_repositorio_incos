@@ -48,4 +48,21 @@ public class Tipo_proyectoBean extends BaseBean {
                 "id=?", request.getParameter("id"));
         
     }
+    /**
+     * 
+     * @param id 
+     * @param id_usuario / codigo de usuario solo para tablas que tengan auditorias
+     * @return
+     */
+    public String eliminarTipo_proyectos(int id,int id_usuario){
+        int resultado = super.ejecutar("DELETE FROM tipo_proyectos WHERE id=?",id);
+        switch (resultado) {
+            case -1:
+                return "Error con la base de datos";                
+            case 0:
+                return "No se encontraron registros para eliminar";        
+            default:
+                return " "+String.valueOf(resultado)+" registros Eliminados";
+        }        
+    }
 }

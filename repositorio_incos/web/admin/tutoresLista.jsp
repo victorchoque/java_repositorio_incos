@@ -33,7 +33,10 @@ request.setAttribute("subtitulo", "Lista de personal Tutores del sistema");
         <td><%=item.getNombres()%></td>  
         <td><%=item.getNivel_educativo()%></td>
         <td><%=item.getEspecializacion()%></td>
-        <td><a href='tutoresForm.jsp?id=<%=item.getId()%>'>EDITAR</a></td>
+        <td>
+            <a href='tutoresForm.jsp?id=<%=item.getId()%>'>EDITAR</a>
+            <a href='eliminar?tabla=tutores&id=<%=item.getId()%>' onclick="return confirm('Esta seguro de Borrar?')">BORRAR</a>
+        </td>
     </tr>
 <%}%>
     </tbody>

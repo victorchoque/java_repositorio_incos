@@ -51,4 +51,21 @@ public class AdministrativoBean extends BaseBean {
                 "id=?", request.getParameter("id"));
         
     }
+    /**
+     * Lo se suena raro la funcion :)
+     * @param id 
+     * @param id_usuario / codigo de usuario solo para tablas que tengan auditorias
+     * @return
+     */
+    public String eliminarAdministrativos(int id,int id_usuario){
+        int resultado = super.ejecutar("DELETE FROM administrativos WHERE id=?",id);
+        switch (resultado) {
+            case -1:
+                return "Error con la base de datos, Verifique Que el Registro no tenga dependencias";                
+            case 0:
+                return "No se encontraron registros para eliminar";        
+            default:
+                return " "+String.valueOf(resultado)+" registros Eliminados";
+        }        
+    }
 }
