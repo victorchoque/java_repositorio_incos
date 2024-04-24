@@ -45,7 +45,7 @@ public class AdministrativoBean extends BaseBean {
     private String user;
     private String pass;
         */
-        formulario.put("user", Long.valueOf(request.getParameter("user") ) );
+        formulario.put("user", request.getParameter("user") );
         formulario.put("pass", request.getParameter("pass") );
         return super.actualizarDatos("administrativos", formulario, 
                 "id=?", request.getParameter("id"));

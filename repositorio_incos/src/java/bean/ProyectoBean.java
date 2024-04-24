@@ -9,7 +9,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.StringJoiner;
+
 import pojo.Proyecto;
+import pojo.ReporteProyectos;
+
+
 
 /**
  *
@@ -73,5 +82,48 @@ public class ProyectoBean extends BaseBean {
         return super.actualizarDatos("proyectos", formulario, 
                 "id=?", request.getParameter("id"));
         
+    }
+    
+    public List<ReporteProyectos> listarProyectoEnPortada(HttpServletRequest request) throws Exception{
+        // id, carreras_sid, tipo_proyectos_id, tutores_id, estudiantes_id, titulo, anio_defensa, descripcion, resumen, carrera, tipo_proyecto, tutor, estudiante 
+        // filtros = anios[] , carreras_sid? , tipo_proyectos_id?, titulo?, descripcion?
+        List<String> filtros = new ArrayList<>();
+        List<Object> parametros = new ArrayList<>(); // medida de seguridad
+        
+        
+        if(request.getParameter("carreras_sid") != null && request.getParameter("carreras_sid").length()>0){
+            filtros.add(" carreras_sid = ? ");
+            parametros.add(request.getParameter("carreras_sid") );
+        }
+        if(request.getParameter("tipo_proyectos_id") != null && request.getParameter("tipo_proyectos_id").length()>0){
+            filtros.add(" tipo_proyectos_id = ? ");
+            parametros.add( Integer.valueOf(request.getParameter("tipo_proyectos_id")) );
+        }
+        //EN las busquedas con LIKE en mysql se debe de usar minimo 3 caracteres
+        if(request.getParameter("titulo") != null && request.getParameter("titulo").length()>2){
+            filtros.add(" titulo LIKE ? ");
+            parametros.add( "%"+request.getParameter("titulo") +"%" );
+        }
+        //EN las busquedas con LIKE en mysql se debe de usar minimo 3 caracteres
+        if(request.getParameter("descripcion") != null && request.getParameter("descripcion").length()>2){
+            filtros.add(" descripcion LIKE ? ");
+            parametros.add( "%"+request.getParameter("descripcion") +"%" );
+        }
+        if(request.getParameter("anios")!=null &&request.getParameterValues("anios").length>0){
+            //verificamos que sean años validos y no inyeccion SQL
+            List<String> anios = new ArrayList<>();
+            for(String anio : request.getParameterValues("anios")){
+                int newAnio = Integer.parseInt(anio);
+                anios.add( String.valueOf(newAnio) );
+            }
+            filtros.add(" anio_defensa IN ("+ String.join(",", anios) +")" );
+        }
+
+        return super.obtenerListado(ReporteProyectos.class, 
+                " SELECT * FROM reporte_proyectos " 
+                + (filtros.isEmpty() ?"": " WHERE " + String.join(" AND ",filtros) )
+                + " ORDER BY anio_defensa DESC"
+                + " LIMIT 30"
+                , parametros.toArray());
     }
 }

@@ -13,29 +13,12 @@
     }
     </style>
 <ul>
-            <li>
-                <a href="listaPropietario.jsp"> listaPropietario</a>
-            </li>
-            <li>
-                <a href="registrarPropietario.jsp"> registrarPropietario</a>
-            </li>
-            <li>
-                <a href="buscarPropietario.jsp"> buscarPropietario</a>
-            </li>
-            <li>
-                <a href="buscarMascotaPorPropietario.jsp"> buscarMascotaPorPropietario</a>
-            </li>
-            <li>
-                <hr>
-            </li>
-            <li>
-                <a href="listaClientes.jsp"> listaClientes.jsp</a>
-            </li>
-            <li>
-                <a href="registrarCliente.jsp"> registrarCliente.jsp</a>
-            </li>
-            
-            <li>
-                <a href="admin/administrativosLista.jsp"> admin/administrativosLista.jsp</a>
-            </li>
-        </ul>
+
+    <li>
+        <a href="admin/administrativosLista.jsp"> admin/administrativosLista.jsp PROTEGIDO</a>
+    </li>
+    
+    <li>
+        <b><a href="publico/portada.jsp"> PORTADA PRINCIPAL</a></b>
+    </li>
+</ul>

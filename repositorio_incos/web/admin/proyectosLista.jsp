@@ -4,6 +4,8 @@
 --%>
 <%@page import="pojo.Proyecto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%
 request.setAttribute("subtitulo", "Lista de personal proyectos del sistema");
 %>
@@ -26,7 +28,10 @@ request.setAttribute("subtitulo", "Lista de personal proyectos del sistema");
     <tr>
         <td><%=item.getId()%></td>
         <td><%=item.getTitulo()%></td>        
-        <td><%=item.getPdfTamanio()%></td>
+        <td>
+        
+            <a href="${contextPath}/publico/proyecto.jsp?id=<%=item.getId()%>" target="_blank"><%=item.getPdfTamanio()%> <img src='${contextPath}/assets/portada_page/pdf-icon.svg' style="max-width:16px;max-height:16px"></a>
+        </td>
         <td><a href='proyectosForm.jsp?id=<%=item.getId()%>'>EDITAR</a> 
         |   <a href='eliminar.jsp?table=proyectos&id=<%=item.getId()%>' onclick="return prompt('Esta seguro de eliminar ?')">Borrarr</a> 
         </td>

@@ -100,9 +100,9 @@ request.setAttribute("subtitulo", " proyectos");
             <td>
                 <select name="carreras_sid">
                     <option value="0">Seleccione Carrera</option>
-                    <%for (Carrera item : carreraBean.listaCarreras() ) {%>
+                    <% for (Carrera item : carreraBean.listaCarreras() ) {%>
                     <option value="<%=item.getSid()%>" <%=item.getSid().equalsIgnoreCase(proyecto.getCarreras_sid()) ? "selected" : ""%>><%=item.getNombre()%></option>
-                    <%}%>
+                    <% } %>
                 </select>
             </td>
         </tr>
@@ -111,9 +111,9 @@ request.setAttribute("subtitulo", " proyectos");
             <td>
                 <select name="tipo_proyectos_id">
                     <option value="0">Seleccione Tipo de Proyecto</option>
-                    <%for (Tipo_proyecto item : tipo_proyectoBean.listaTipo_proyectos()) {%>
+                    <% for (Tipo_proyecto item : tipo_proyectoBean.listaTipo_proyectos()) {%>
                     <option value="<%=item.getId()%>" <%=item.getId() == proyecto.getTipo_proyectos_id() ? "selected" : ""%>><%=item.getTipo()%></option>
-                    <%}%>
+                    <% } %>
                 </select>
             </td>
         </tr>

@@ -30,6 +30,7 @@ request.setAttribute("subtitulo", "Lista de personal Tutores del sistema");
         <td><%=item.getId()%></td>
         <td><%=item.getApellido_paterno()%></td>        
         <td><%=item.getApellido_materno()%></td>                
+        <td><%=item.getNombres()%></td>  
         <td><%=item.getNivel_educativo()%></td>
         <td><%=item.getEspecializacion()%></td>
         <td><a href='tutoresForm.jsp?id=<%=item.getId()%>'>EDITAR</a></td>
