@@ -1,5 +1,5 @@
 -- MySQL Workbench Synchronization
--- Generated: 2024-04-24 03:47
+-- Generated: 2024-04-24 15:13
 -- Model: New Model
 -- Version: 1.0
 -- Project: Name of the project
@@ -234,7 +234,7 @@ INNER JOIN carreras       AS c  ON  c.sid = p.carreras_sid
 INNER JOIN tipo_proyectos AS tp ON tp.id  = p.tipo_proyectos_id
 INNER JOIN tutores        AS t  ON  t.id  = p.tutores_id
 INNER JOIN estudiantes    AS e  ON  e.id  = p.estudiantes_id
-WHERE p.activo = true
+WHERE p.activo = "si"
 -- Columnas para usarlos y crear un Modelo,Pojo,Dto, etc
 -- id, carreras_sid, tipo_proyectos_id, tutores_id, estudiantes_id, titulo, anio_defensa, descripcion, resumen, carrera, tipo_proyecto, tutor, estudiante;
 

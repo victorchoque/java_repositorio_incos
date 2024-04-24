@@ -46,36 +46,8 @@ abstract public class BaseBean {
     @PreDestroy
     public void cerrandoConexion(){
         variables.cerrarConexion();              
-    }
-    
-    public UsuarioLogeado obtenerUsuarioLogeado() {
-        
-        /*FacesContext facesContext = FacesContext.getCurrentInstance();
-        
-        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
-
-        if (session != null && session.getAttribute(UsuarioLogeado.class.getName()) != null) {
-            // El usuario está autenticado, retornamos el objeto UsuarioLogeado
-            return (UsuarioLogeado) session.getAttribute(UsuarioLogeado.class.getName());
-        } else {
-            // El usuario no está autenticado
-            return null;
-        }/**/
-//        FacesContext
-//        FacesContext.getCurrentInstance().
-//        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-//        HttpSession session = request.getSession(false);
-//
-//        if (session != null && session.getAttribute(UsuarioLogeado.class.getName()) != null) {
-//            // El usuario está autenticado, retornamos el objeto UsuarioLogeado
-//            return (UsuarioLogeado) session.getAttribute(UsuarioLogeado.class.getName());
-//        } else {
-//            // El usuario no está autenticado
-//            return null;
-//        }
-return null;
-    }
-    
+    }    
+    /*
     interface ResultSetMapper<T> {
         T mapRow(ResultSet rs) throws SQLException;
     }
@@ -91,7 +63,7 @@ return null;
             }
         }
         return resultadoRetorna;
-    }
+    }/* */
     public <T> Map<String, Object> convertirObjetoAMap(T objeto, String... campos) {
         Map<String, Object> valores = new HashMap<>();
         Class<?> claseObjeto = objeto.getClass();
@@ -115,7 +87,13 @@ return null;
         }
         return valores;
     }
-    
+    /**
+     * Se encarga de setear los parametros de la consulta SQL en el PreparedStatement 
+     * @param statement
+     * @param startPos
+     * @param parametros
+     * @throws SQLException
+     */
     protected void setearParametros(PreparedStatement statement,int startPos , Object ...parametros) throws SQLException{
         for (int i = 0, index= startPos; i < parametros.length; i++,index++) {
             if (parametros[i] instanceof BigDecimal) {
@@ -343,6 +321,28 @@ return null;
         Map<String, Object> valores = convertirObjetoAMap(clasePojo,columnas);
         return insertarDatos(tabla,valores);
     }    
+    /**
+     * Ejecuta una consulta SQL de tipo INSERT, UPDATE o DELETE.
+     * 
+     * @param query
+     * @param columnas
+     * @return -1 si ocurre un error, de lo contrario retorna el número de filas afectadas.
+     */
+    public int ejecutar(String query,Object ...columnas){
+        PreparedStatement statement;
+        try {
+            statement = conexion.prepareStatement(query);
+            setearParametros(statement,1,columnas);
+            //retorna las filas afectadas por la consulta
+            return statement.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        // retornamos -1 por que ocurrio Un error en base de datos
+        return -1;
+        
+    }
     public String actualizarDatos(String tabla, Map<String, Object> valores, String where,Object ...columnas) {
         PreparedStatement statement;
         String mensaje = "Error: No se pudo actualizar los datos.";

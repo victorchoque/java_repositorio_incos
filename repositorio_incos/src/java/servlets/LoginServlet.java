@@ -22,12 +22,13 @@ import util.AESUtil;
  */
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-
+    private UsuarioLogeadoBean usuarioLogeadoBean;
+    private UsuarioLogeado usuarioLogeado;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         
-        
+
         // Validar las credenciales (aquí asumimos que son válidas)
         if (autenticarUsuario(username,password)) {
             try{
@@ -49,9 +50,18 @@ public class LoginServlet extends HttpServlet {
     // Métodos de autenticación y obtención de información de usuario
     // Estos métodos deben implementarse de acuerdo a la lógica de tu aplicación
     private boolean autenticarUsuario(String user, String pass) {
+        
         // Lógica de autenticación
+        try{
+            usuarioLogeadoBean = new UsuarioLogeadoBean();
+            usuarioLogeado = usuarioLogeadoBean.existe(user, pass);
+            return usuarioLogeado!=null && usuarioLogeado.getId()>0;
+        }catch(Exception e){
+            return false;
+        }
+        
         // Retorna true si el usuario es autenticado exitosamente, false en caso contrario
-        return "admin".equals(user) && "admin".equals(user);
+        //return "admin".equals(user) && "admin".equals(user);
     }
     
     private void persistirDatos(HttpServletRequest request, HttpServletResponse response,String user, String pass) throws Exception {
@@ -59,8 +69,8 @@ public class LoginServlet extends HttpServlet {
         
         HttpSession session = request.getSession();
         //verificamos si existe el usuario (administrativo)
-        UsuarioLogeadoBean usuarioLogeadoBean = new UsuarioLogeadoBean();
-        UsuarioLogeado usuarioLogeado = usuarioLogeadoBean.existe(user, pass);
+        //UsuarioLogeadoBean usuarioLogeadoBean = new UsuarioLogeadoBean();
+        //UsuarioLogeado usuarioLogeado = usuarioLogeadoBean.existe(user, pass);
         
         String datosCifrados = AESUtil.cifrar(String.valueOf(usuarioLogeado.getId()));
         session.setAttribute(UsuarioLogeado.class.getName(), usuarioLogeado);

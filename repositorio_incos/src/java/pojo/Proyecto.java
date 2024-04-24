@@ -21,7 +21,7 @@ public class Proyecto {
     private String descripcion;
     private String resumen;
     private byte[] pdf;//BLOB
-    private boolean activo;
+    private String activo; //"si" o "no"
     private int auditoria_administrativos_id;
     private String auditoria_fecha_hora;
     private String auditoria_accion;
@@ -125,11 +125,14 @@ public class Proyecto {
     }
 
     public boolean isActivo() {
-        return activo;
+        return activo.equalsIgnoreCase("si");
     }
 
-    public void setActivo(boolean activo) {
+    public void setActivo(String activo) {
         this.activo = activo;
+    }
+    public String getActivo() {
+        return this.activo;
     }
 
     public int getAuditoria_administrativos_id() {
