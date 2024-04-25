@@ -24,6 +24,16 @@ public class TutorBean extends BaseBean {
         return super.obtenerListado(Tutor.class, 
                 "SELECT * FROM tutores");
     }
+    public List<Tutor> buscarTutores (String nombre) throws Exception{
+        String buscar = nombre+"%";
+        return super.obtenerListado(Tutor.class, 
+                "SELECT * FROM tutores WHERE "
+                +" nombres LIKE ? OR"
+                +" apellido_paterno LIKE ? OR"
+                +" apellido_materno LIKE ? "
+                ,buscar,buscar,buscar
+        );
+    }
     public Tutor obtenerTutoresPorId(int id) throws Exception{
         return super.obtenerResultadoA(Tutor.class
                 , "SELECT * FROM tutores WHERE id=?"

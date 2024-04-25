@@ -26,6 +26,9 @@
             <a href="${contextPath}/admin/tutoresLista.jsp"> Tutores </a>
         </li>
         <li>
+            <a href="${contextPath}/admin/tutoresBuscar.jsp">Buscar Tutores </a>
+        </li>
+        <li>
             <hr>
         </li>
         <li>
