@@ -111,6 +111,16 @@ public class ProyectoBean extends BaseBean {
             filtros.add(" titulo LIKE ? ");
             parametros.add( "%"+request.getParameter("titulo") +"%" );
         }
+        //en caso de que se busque por author que es el estudiante
+        if(request.getParameter("author") != null && request.getParameter("author").length()>2){
+            filtros.add(" estudiante LIKE ? ");
+            parametros.add( "%"+request.getParameter("author") +"%" );
+        }
+        //en caso de que se busque por tutor
+        if(request.getParameter("tutor") != null && request.getParameter("tutor").length()>2){
+            filtros.add(" tutor LIKE ? ");
+            parametros.add( "%"+request.getParameter("tutor") +"%" );
+        }
         //EN las busquedas con LIKE en mysql se debe de usar minimo 3 caracteres
         if(request.getParameter("descripcion") != null && request.getParameter("descripcion").length()>2){
             filtros.add(" descripcion LIKE ? ");

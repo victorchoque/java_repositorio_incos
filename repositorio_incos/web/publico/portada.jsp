@@ -110,6 +110,15 @@
             <label for="titulo">titulo:</label>
             <br>
             <input type="text" id="titulo" name="titulo">
+            <hr>
+            <label for="author">autor:</label>
+            <br>
+            <input type="text" id="author" name="author">
+            <br>
+            <hr>
+            <label for="tutor">tutor</label>
+            <br>
+            <input type="text" id="tutor" name="tutor">
             <br>
             <hr>
             <label for="descripcion">descripcion:</label>
