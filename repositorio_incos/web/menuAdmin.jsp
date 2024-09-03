@@ -50,6 +50,12 @@
         <li>
             <a href="${contextPath}/admin/tipo_proyectosLista.jsp"> tipo_proyectosLista </a>
         </li>
-        
+        <li>
+            <hr>
+            <h3>Reportes</h3>
+        </li>
+        <li>
+            <a href="${contextPath}/admin/reportesTodos.jsp"> Reportes </a>
+        </li>           
     </ul>
 </nav>

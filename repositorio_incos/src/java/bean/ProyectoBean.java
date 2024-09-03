@@ -58,8 +58,13 @@ public class ProyectoBean extends BaseBean {
         formulario.put("anio_defensa"     , Integer.parseInt( request.getParameter("anio_defensa") ) );
         formulario.put("descripcion"      , request.getParameter("descripcion") );
         formulario.put("resumen"          , request.getParameter("resumen") );
-        //formulario.put("pdf"              , request.getParameter("pdf") );
-        formulario.put("pdf"              , pdf );
+        //formulario.put("pdf"              , request.getParameter("pdf") );        
+        if(pdf != null){
+            formulario.put("pdf"              , pdf );
+            if(pdf.length < 125){
+                return "El Pdf es muy pequeño";
+            }
+        }
         //formulario.put("activo"           , "si" );
         formulario.put("auditoria_administrativos_id", Integer.parseInt( request.getParameter("auditoria_administrativos_id") ) );                
         formulario.put("auditoria_descripcion"       , request.getParameter("auditoria_descripcion") );
@@ -80,8 +85,13 @@ public class ProyectoBean extends BaseBean {
         formulario.put("descripcion"      , request.getParameter("descripcion") );
         formulario.put("resumen"          , request.getParameter("resumen") );
         //formulario.put("pdf"              , request.getParameter("pdf") );
-        if(pdf != null)
+        if(pdf != null){
             formulario.put("pdf"              , pdf );
+            if(pdf.length < 125){
+                return "El Pdf es muy pequeño";
+            }
+        }
+            
         //formulario.put("activo"           ,  "si" );
         formulario.put("auditoria_administrativos_id", Integer.parseInt( request.getParameter("auditoria_administrativos_id") ) );                
         formulario.put("auditoria_descripcion"       , request.getParameter("auditoria_descripcion") );
