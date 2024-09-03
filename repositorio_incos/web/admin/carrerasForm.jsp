@@ -9,9 +9,8 @@ request.setAttribute("subtitulo", " Carreras");
 %>
 <jsp:include page="/WEB-INF/jspf/header.jsp" /> 
 
-<jsp:useBean id="carrerasBean" scope="session"  class="bean.CarreraBean"/>
+<jsp:useBean id="carrerasBean" scope="session"  class="bean.CarreraBean" />
 <%
-
     String subtitulo = "Insertar Carreras";
     Carrera carrera = new Carrera();
     if(request.getParameter("sid") !=null){

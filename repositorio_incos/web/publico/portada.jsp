@@ -6,7 +6,7 @@
 <%@page import="pojo.Proyecto"%>
 <%@page import="pojo.Tipo_proyecto"%>
 <%@page import="pojo.Carrera"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <jsp:useBean id="carreraBean" scope="session"  class="bean.CarreraBean"/>

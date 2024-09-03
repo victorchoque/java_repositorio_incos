@@ -29,6 +29,18 @@ public class CarreraBean extends BaseBean {
                 , "SELECT * FROM carreras WHERE sid=?"
                 , sid);
     }
+    public String insertarCarreras(HttpServletRequest request){        
+        Map<String, Object> formulario = new HashMap<>();
+        /*
+    private String nombre;
+        */
+        
+        String sid = SlugGenerator.toSlug(request.getParameter("nombre") );
+        formulario.put("sid", sid );
+        formulario.put("nombre", request.getParameter("nombre") );
+
+        return super.insertarDatos("carreras", formulario);
+    }
     /**
      * 
      * @param sid 

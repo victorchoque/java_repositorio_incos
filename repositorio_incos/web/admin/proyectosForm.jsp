@@ -25,6 +25,7 @@ request.setAttribute("subtitulo", " proyectos");
 <jsp:useBean id="reportesBean" scope="session"  class="bean.ReportesBean"/>
 
 <%
+    request.setCharacterEncoding("UTF-8");
     UsuarioLogeado usuario = (UsuarioLogeado) session.getAttribute(UsuarioLogeado.class.getName());
     String subtitulo = "Insertar proyectos";
     Proyecto proyecto = new Proyecto();
@@ -177,7 +178,7 @@ request.setAttribute("subtitulo", " proyectos");
         </tr>
             
         <tr>
-            <td>Descripcion de Auditoria:</td>
+            <td>Descripcion para Auditoria<br>( ¿por que edita o agrega?):</td>
             <td><input type="text" name="auditoria_descripcion" required /></td>
         </tr>
         <tr>
