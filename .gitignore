@@ -3,3 +3,10 @@ build/
 dist/
 mariadb-connector-c-3.3.8-centos74-amd64.tar.gz
 repositorio_incos/nbproject/private
+jasper56
+jasperJarsNecesarios
+repositorio_incos/jasper
+repositorio_incos/web/jasper/.settings
+DataAdapter.jrdax
+*/.*
+*/*/*/.*
