@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.20.6  -->
+<!-- Created with Jaspersoft Studio version 7.0.0.final using JasperReports Library version 6.20.6  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporte_por_modalidad" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c55c3bb3-08ba-41a4-90bc-662573fcf644">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<queryString>
-		<![CDATA[SELECT * FROM reporte_proyectos]]>
+		<![CDATA[SELECT * FROM reporte_proyectos ORDER BY tipo_proyectos_id]]>
 	</queryString>
 	<field name="id" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.name" value="id"/>
@@ -82,9 +82,9 @@
 					<reportElement x="40" y="0" width="532" height="30" forecolor="#E1ECFC" backcolor="#DDE7F0" uuid="300b2db0-4bd0-4ac0-a95c-aa53f9560674"/>
 				</rectangle>
 				<textField>
-					<reportElement x="50" y="0" width="522" height="30" uuid="89239c4e-da24-42ef-bdad-b191b5fbbe8a"/>
+					<reportElement x="40" y="0" width="522" height="30" uuid="27d0eff3-53a8-43ab-ac8e-2cddf2c44b29"/>
 					<textElement>
-						<font fontName="Big Caslon" size="15"/>
+						<font size="16"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{tipo_proyecto}]]></textFieldExpression>
 				</textField>

@@ -1,65 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.20.6  -->
+<!-- Created with Jaspersoft Studio version 7.0.0.final using JasperReports Library version 6.20.6  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporte_por_tutor" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c55c3bb3-08ba-41a4-90bc-662573fcf644">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<queryString>
-		<![CDATA[SELECT * FROM reporte_proyectos]]>
+		<![CDATA[SELECT * FROM reporte_proyectos ORDER BY tutor]]>
 	</queryString>
 	<field name="id" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.name" value="id"/>
 		<property name="com.jaspersoft.studio.field.label" value="id"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="reporte_proyectos"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="proyectos"/>
 	</field>
 	<field name="carreras_sid" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="carreras_sid"/>
 		<property name="com.jaspersoft.studio.field.label" value="carreras_sid"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="reporte_proyectos"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="proyectos"/>
 	</field>
 	<field name="tipo_proyectos_id" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.name" value="tipo_proyectos_id"/>
 		<property name="com.jaspersoft.studio.field.label" value="tipo_proyectos_id"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="reporte_proyectos"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="proyectos"/>
 	</field>
 	<field name="tutores_id" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.name" value="tutores_id"/>
 		<property name="com.jaspersoft.studio.field.label" value="tutores_id"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="reporte_proyectos"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="proyectos"/>
 	</field>
 	<field name="estudiantes_id" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.name" value="estudiantes_id"/>
 		<property name="com.jaspersoft.studio.field.label" value="estudiantes_id"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="reporte_proyectos"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="proyectos"/>
 	</field>
 	<field name="titulo" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="titulo"/>
 		<property name="com.jaspersoft.studio.field.label" value="titulo"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="reporte_proyectos"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="proyectos"/>
 	</field>
 	<field name="anio_defensa" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="anio_defensa"/>
 		<property name="com.jaspersoft.studio.field.label" value="anio_defensa"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="reporte_proyectos"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="proyectos"/>
 	</field>
 	<field name="descripcion" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="descripcion"/>
 		<property name="com.jaspersoft.studio.field.label" value="descripcion"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="reporte_proyectos"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="proyectos"/>
 	</field>
 	<field name="resumen" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="resumen"/>
 		<property name="com.jaspersoft.studio.field.label" value="resumen"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="reporte_proyectos"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="proyectos"/>
 	</field>
 	<field name="carrera" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="carrera"/>
 		<property name="com.jaspersoft.studio.field.label" value="carrera"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="reporte_proyectos"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="carreras"/>
 	</field>
 	<field name="tipo_proyecto" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="tipo_proyecto"/>
 		<property name="com.jaspersoft.studio.field.label" value="tipo_proyecto"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="reporte_proyectos"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tipo_proyectos"/>
 	</field>
 	<field name="tutor" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="tutor"/>
@@ -72,7 +72,7 @@
 		<property name="com.jaspersoft.studio.field.tree.path" value="reporte_proyectos"/>
 	</field>
 	<group name="Group1">
-		<groupExpression><![CDATA[$F{tipo_proyecto}]]></groupExpression>
+		<groupExpression><![CDATA[$F{tutor}]]></groupExpression>
 		<groupHeader>
 			<band height="32">
 				<rectangle radius="3">
